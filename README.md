@@ -8,3 +8,26 @@ join facebook_reactions r
 on p.post_id = r.post_id
 where r.reaction = 'heart'
 group by p.post_id;
+
+# Q2-We have a table with employees and their salaries; however, some of the records are old and contain outdated salary information. Since there is no timestamp, assume salary is non-decreasing over time. You can consider the current salary for an employee is the largest salary value among their records. If multiple records share the same maximum salary, return any one of them. Output their id, first name, last name, department ID, and current salary. Order your list by employee ID in ascending order.
+sol- SELECT id,
+       first_name,
+       last_name,
+       department_id,
+       salary
+FROM (
+    SELECT *,
+           ROW_NUMBER() OVER (PARTITION BY id ORDER BY salary DESC) AS rn
+    FROM ms_employee_salary
+) t
+WHERE rn = 1
+ORDER BY id ASC;
+
+# Q3-Find the total cost of each customer's orders. Output the customer's ID, first name, and the total order cost. Order records by the customer's first name alphabetically.
+sol-SELECT  c.id, c.first_name, 
+SUM(o.total_order_cost) AS total_order_cost
+FROM customers c
+JOIN 
+orders o ON c.id = o.cust_id 
+GROUP BY c.id, c.first_name 
+ORDER BY c.first_name ASC;
