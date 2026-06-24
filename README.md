@@ -31,3 +31,11 @@ JOIN
 orders o ON c.id = o.cust_id 
 GROUP BY c.id, c.first_name 
 ORDER BY c.first_name ASC;
+
+# Q4-Management wants to analyze only employees with official job titles. Find the title(s) of the worker(s) with the highest salary among workers who have a corresponding record in the  title  table. If multiple employees have the same highest salary, include all their job titles.
+sol- select t.worker_title as best_paid_title
+from
+    title t
+join worker w
+on t.worker_ref_id = w.worker_id
+order by w.salary desc limit 2;
