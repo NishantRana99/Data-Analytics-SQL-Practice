@@ -39,3 +39,9 @@ from
 join worker w
 on t.worker_ref_id = w.worker_id
 order by w.salary desc limit 2;
+
+# Q4- Compare each employee's salary with the average salary of the corresponding department.
+Output the department, first name, and salary of employees along with the average salary of that department.
+sol- select department, first_name, salary,
+avg(salary) over( PARTITION BY department) as avg_salary
+from employee;
