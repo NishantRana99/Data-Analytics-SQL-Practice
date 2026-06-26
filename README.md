@@ -40,7 +40,7 @@ on t.worker_ref_id = w.worker_id
 order by w.salary desc limit 2;
 
 
-# Q4- Compare each employee's salary with the average salary of the corresponding department.
+# Q5- Compare each employee's salary with the average salary of the corresponding department.
 Output the department, first name, and salary of employees along with the average salary of that department.
 
 sol- select department, first_name, salary,
@@ -48,8 +48,8 @@ avg(salary) over( PARTITION BY department) as avg_salary
 from employee;
 
 
-# Q5- What is the total sales revenue of Samantha and Lisa?
+# Q6- What is the total sales revenue of Samantha and Lisa?
 sol- select sum(sales_revenue) as total_rvenue from sales_performance where salesperson in ('Samantha', 'Lisa')
 
-# Q6- Find wine varieties tasted by 'Roger Voss' and with a value in the 'region_1' column of the dataset. Output unique variety names only.
+# Q7- Find wine varieties tasted by 'Roger Voss' and with a value in the 'region_1' column of the dataset. Output unique variety names only.
 sol- select distinct variety  from winemag_p2 where taster_name = 'Roger Voss'and region_1 is not null;
