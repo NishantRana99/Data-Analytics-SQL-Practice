@@ -32,10 +32,9 @@ orders o ON c.id = o.cust_id
 GROUP BY c.id, c.first_name 
 ORDER BY c.first_name ASC;
 
-# Q4-Management wants to analyze only employees with official job titles. Find the title(s) of the worker(s) with the highest salary among workers who have a corresponding record in the  title  table. If multiple employees have the same highest salary, include all their job titles.
+# Q4-Management wants to analyse only employees with official job titles. Find the title(s) of the worker(s) with the highest salary among workers who have a corresponding record in the  title  table. If multiple employees have the same highest salary, include all their job titles.
 sol- select t.worker_title as best_paid_title
-from
-    title t
+from title t
 join worker w
 on t.worker_ref_id = w.worker_id
 order by w.salary desc limit 2;
@@ -43,18 +42,14 @@ order by w.salary desc limit 2;
 
 # Q4- Compare each employee's salary with the average salary of the corresponding department.
 Output the department, first name, and salary of employees along with the average salary of that department.
+
 sol- select department, first_name, salary,
 avg(salary) over( PARTITION BY department) as avg_salary
 from employee;
 
-Q5- Compare each employee's salary with the average salary of the corresponding department.
-Output the department, first name, and salary of employees along with the average salary of that department.
-sol- select department, first_name, salary,
-avg(salary) over( PARTITION BY department) as avg_salary
-from employee;
 
-#Q6- What is the total sales revenue of Samantha and Lisa?
+# Q5- What is the total sales revenue of Samantha and Lisa?
 sol- select sum(sales_revenue) as total_rvenue from sales_performance where salesperson in ('Samantha', 'Lisa')
 
-#Q7- Find wine varieties tasted by 'Roger Voss' and with a value in the 'region_1' column of the dataset. Output unique variety names only.
+# Q6- Find wine varieties tasted by 'Roger Voss' and with a value in the 'region_1' column of the dataset. Output unique variety names only.
 sol- select distinct variety  from winemag_p2 where taster_name = 'Roger Voss'and region_1 is not null;
