@@ -47,9 +47,14 @@ sol- select department, first_name, salary,
 avg(salary) over( PARTITION BY department) as avg_salary
 from employee;
 
-
 # Q6- What is the total sales revenue of Samantha and Lisa?
 sol- select sum(sales_revenue) as total_rvenue from sales_performance where salesperson in ('Samantha', 'Lisa')
 
 # Q7- Find wine varieties tasted by 'Roger Voss' and with a value in the 'region_1' column of the dataset. Output unique variety names only.
 sol- select distinct variety  from winemag_p2 where taster_name = 'Roger Voss'and region_1 is not null;
+
+# Q8- Find the hour with the highest gasoline cost. Assume there's only 1 hour with the highest gas cost.
+sol- SELECT hour 
+FROM lyft_rides 
+ORDER BY gasoline_cost DESC 
+LIMIT 1;
