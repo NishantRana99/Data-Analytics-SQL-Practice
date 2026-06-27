@@ -58,3 +58,8 @@ sol- SELECT hour
 FROM lyft_rides 
 ORDER BY gasoline_cost DESC 
 LIMIT 1;
+
+# Q9- Find all Lyft rides that happened on rainy days before noon.
+sol- select * from lyft_rides where weather = 'rainy' and hour < '12' ;
+
+
