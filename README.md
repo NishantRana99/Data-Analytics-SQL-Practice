@@ -74,3 +74,12 @@ sol- select  artist, count(position) as n_occurences
     from spotify_worldwide_daily_song_ranking
     group by artist
     order by n_occurences desc;
+
+# 12-Find songs that have ranked in the top position. Output the track name and the number of times it ranked at the top. Sort your records by the number of times the song was in the top position in descending order.
+sol- select  trackname,
+sum(case when position = '1' then 1 else 0 end ) as tims_top1
+from spotify_worldwide_daily_song_ranking 
+group by trackname
+HAVING SUM(CASE WHEN position = '1' THEN 1 ELSE 0 END) > 0
+order by tims_top1 desc;
+    
