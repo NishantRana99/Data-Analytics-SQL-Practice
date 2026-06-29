@@ -75,11 +75,18 @@ sol- select  artist, count(position) as n_occurences
     group by artist
     order by n_occurences desc;
 
-# 12-Find songs that have ranked in the top position. Output the track name and the number of times it ranked at the top. Sort your records by the number of times the song was in the top position in descending order.
+# Q12-Find songs that have ranked in the top position. Output the track name and the number of times it ranked at the top. Sort your records by the number of times the song was in the top position in descending order.
 sol- select  trackname,
 sum(case when position = '1' then 1 else 0 end ) as tims_top1
 from spotify_worldwide_daily_song_ranking 
 group by trackname
 HAVING SUM(CASE WHEN position = '1' THEN 1 ELSE 0 END) > 0
 order by tims_top1 desc;
+
+# Q13- Find the lowest, average, and the highest ages of athletes across all Olympics. HINT: If athlete participated in more than one discipline at one Olympic games, consider it as a separate athlete, no need to remove such edge cases.
+sol- select 
+    min(age) as lowest_age,
+    avg(age)as mean_age, 
+    max(age)as highest_age
+    from olympics_athletes_events;
     
