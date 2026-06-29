@@ -62,4 +62,12 @@ LIMIT 1;
 # Q9- Find all Lyft rides that happened on rainy days before noon.
 sol- select * from lyft_rides where weather = 'rainy' and hour < '12' ;
 
+# Q10- You are given a dataset of health inspections that includes details about violations. Each row represents an inspection, and if an inspection resulted in a violation, the violation_id column will contain a value. Count the total number of violations that occurred at 'Roxanne Cafe' for each year, based on the inspection date. Output the year and the corresponding number of violations in ascending order of the year.
+sol- select extract(year from inspection_date )as n_Year,
+count(violation_id) as n_violation
+from sf_restaurant_health_violations
+where business_name = 'Roxanne Cafe'
+group by  extract(year from inspection_date)
+ORDER BY n_Year ASC;
+
 
