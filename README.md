@@ -83,16 +83,13 @@ group by trackname
 HAVING SUM(CASE WHEN position = '1' THEN 1 ELSE 0 END) > 0
 order by tims_top1 desc;
 
-# Q13- Find the lowest, average, and the highest ages of athletes across all Olympics. HINT: If athlete participated in more than one discipline at one Olympic games, consider it as a separate athlete, no need to remove such edge cases.
+# Q13- Find the lowest, average, and the highest ages of athletes across all Olympics. HINT: If an athlete participated in more than one discipline at one Olympic game, consider it as a separate athlete; no need to remove such edge cases.
 sol- select 
     min(age) as lowest_age,
     avg(age)as mean_age, 
     max(age)as highest_age
 
-# Q14- Find order details made by Jill and Eva.
-Consider the Jill and Eva as first names of customers.
-Output the order date, details and cost along with the first name.
-Order records based on the customer id in ascending order.
+# Q14- Find order details made by Jill and Eva. Consider Jill and Eva as first names of customers. Output the order date, details, and cost along with the first name. Order records based on the customer id in ascending order.
 sol- select c.first_name ,o.order_date, o.order_details, o.total_order_cost
 from customers c
 join orders o 
